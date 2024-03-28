@@ -5,6 +5,16 @@ on:
     #     branches:
     #       - main
      workflow_dispatch:
+      inputs:
+        terraform_operation:
+          description: "Terraform operation: plan, apply, destroy"
+          required: true
+          default: "plan"
+          type: choice
+          options:
+            - plan
+            - apply
+            - destroy
 
 jobs:
  deploy:
@@ -26,9 +36,24 @@ jobs:
         credentials_json: "${{ secrets.GCP_SA_KEY }}"
         create_credentials_file: true
         export_environment_variables: true
+        
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
 
-    - name: Deploy with Terraform
-      run: |
-        cd infra
-        terraform init
-        terraform apply -auto-approve
+    - name: Go to Infra directory
+      run: cd infra
+
+    - name: Terraform init
+      run : terraform init
+    
+    - name : Terraform Plan
+      run: terraform plan
+      if: "${{ github.event.inputs.terraform_operation == 'plan' }}"
+
+    - name: Terraform apply
+      run: terraform apply --auto-approve
+      if: "${{ github.event.inputs.terraform_operation == 'apply' }}"
+
+    - name: Terraform destroy
+      run: terraform destroy --auto-approve
+      if: "${{ github.event.inputs.terraform_operation == 'destroy' }}"
