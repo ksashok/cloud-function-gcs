@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "gcs-bucket" {
-  name     = "cloud-functions-bucket"
+  name     = "cloud-functions-terraform-bucket"
   location = "australia-southeast1"
 }
 
