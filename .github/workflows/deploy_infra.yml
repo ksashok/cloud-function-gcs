@@ -46,13 +46,19 @@ jobs:
         terraform init
     
     - name : Terraform Plan
-      run: terraform plan
+      run: |
+        cd infra
+        terraform plan
       if: "${{ github.event.inputs.terraform_operation == 'plan' }}"
 
     - name: Terraform apply
-      run: terraform apply --auto-approve
+      run: |
+        cd infra 
+        terraform apply --auto-approve
       if: "${{ github.event.inputs.terraform_operation == 'apply' }}"
 
     - name: Terraform destroy
-      run: terraform destroy --auto-approve
+      run: |
+        cd infra
+        terraform destroy --auto-approve
       if: "${{ github.event.inputs.terraform_operation == 'destroy' }}"
