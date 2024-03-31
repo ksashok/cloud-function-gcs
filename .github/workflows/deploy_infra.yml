@@ -40,11 +40,10 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Go to Infra directory
-      run: cd infra
-
     - name: Terraform init
-      run : terraform init
+      run : |
+        cd infra 
+        terraform init
     
     - name : Terraform Plan
       run: terraform plan
