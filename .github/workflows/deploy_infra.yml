@@ -46,18 +46,27 @@ jobs:
         terraform init
     
     - name : Terraform Plan
+      env:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        regoin: ${{ secrets.GCP_REGION }}
       run: |
         cd infra
         terraform plan
       if: "${{ github.event.inputs.terraform_operation == 'plan' }}"
 
     - name: Terraform apply
+      env:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        regoin: ${{ secrets.GCP_REGION }}
       run: |
         cd infra 
         terraform apply --auto-approve
       if: "${{ github.event.inputs.terraform_operation == 'apply' }}"
 
     - name: Terraform destroy
+      env:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        regoin: ${{ secrets.GCP_REGION }}
       run: |
         cd infra
         terraform destroy --auto-approve

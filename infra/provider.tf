@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "google" {
-  project = "spartan-matter-417112"
-  region  = "australia-southeast1"
+  project = var.project_id
+  region  = var.region
 }

@@ -1,6 +1,6 @@
 resource "google_storage_bucket" "gcs-bucket" {
   name     = "cloud-functions-terraform-bucket"
-  location = "australia-southeast1"
+  location = var.region
 }
 
 resource "google_storage_bucket_object" "function_code" {
