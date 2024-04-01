@@ -12,6 +12,9 @@ resource "google_project_iam_custom_role" "cfunction_role" {
     "storage.objects.get",
     "eventarc.events.receiveEvent",
     "eventarc.events.receiveAuditLogWritten",
+    "run.executions.cancel",
+    "run.jobs.run",
+    "run.routes.invoke"
   ]
 }
 
