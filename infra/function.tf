@@ -39,4 +39,7 @@ resource "google_cloudfunctions2_function" "function" {
       value     = google_storage_bucket.gcs-bucket-trigger.name
     }
   }
+
+  depends_on = [google_service_account.service_account,
+  google_project_iam_binding.service_account_binding]
 }
