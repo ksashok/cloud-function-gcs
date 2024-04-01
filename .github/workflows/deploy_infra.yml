@@ -47,8 +47,8 @@ jobs:
     
     - name : Terraform Plan
       env:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        region: ${{ secrets.GCP_REGION }}
+        TF_VAR_project_id: ${{ secrets.GCP_PROJECT_ID }}
+        TF_VAR_region: ${{ secrets.GCP_REGION }}
       run: |
         cd infra
         terraform plan
@@ -56,8 +56,8 @@ jobs:
 
     - name: Terraform apply
       env:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        region: ${{ secrets.GCP_REGION }}
+        TF_VAR_project_id: ${{ secrets.GCP_PROJECT_ID }}
+        TF_VAR_region: ${{ secrets.GCP_REGION }}
       run: |
         cd infra 
         terraform apply --auto-approve
@@ -65,8 +65,8 @@ jobs:
 
     - name: Terraform destroy
       env:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        region: ${{ secrets.GCP_REGION }}
+        TF_VAR_project_id: ${{ secrets.GCP_PROJECT_ID }}
+        TF_VAR_region: ${{ secrets.GCP_REGION }}
       run: |
         cd infra
         terraform destroy --auto-approve
