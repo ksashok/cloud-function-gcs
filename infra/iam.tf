@@ -11,7 +11,6 @@ resource "google_project_iam_custom_role" "cfunction_role" {
   permissions = [
     "storage.objects.get",
     "roles/eventarc.eventReceiver",
-    "roles/run.invoker",
   ]
 }
 
