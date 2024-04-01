@@ -1,4 +1,5 @@
 # main.py
+import os
 from google.cloud import pubsub_v1
 from google.cloud import storage
 
@@ -13,7 +14,8 @@ def gcs_to_pubsub(data, context):
     bucket_name = file['bucket']
     file_name = file['name']
     client = pubsub_v1.PublisherClient()
-    topic_path = client.topic_path('<PROJECT_ID>', '<TOPIC_NAME>')
+    topic_path = client.topic_path(os.environ('PROJECT_ID'),
+                                   os.environ('TOPIC_NAME'))
 
     # Read the file from GCS
     storage_client = storage.Client()
