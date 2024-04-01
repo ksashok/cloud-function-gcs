@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "gcs-bucket-function" {
-  name     = "moduleA-cloud-functions-code-bucket"
+  name     = "module-a-cloud-functions-code-bucket"
   location = var.region
 }
 
