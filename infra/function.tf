@@ -41,5 +41,5 @@ resource "google_cloudfunctions2_function" "function" {
   }
 
   depends_on = [google_service_account.service_account,
-  google_project_iam_binding.service_account_binding]
+  google_project_iam_member.member-role]
 }
