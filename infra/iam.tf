@@ -10,7 +10,8 @@ resource "google_project_iam_custom_role" "cfunction_role" {
   description = "Permissions for Cloud Function to interact with GCS and BigQuery"
   permissions = [
     "storage.objects.get",
-    "roles/eventarc.eventReceiver",
+    "eventarc.events.receiveEvent",
+    "eventarc.events.receiveAuditLogWritten",
   ]
 }
 
