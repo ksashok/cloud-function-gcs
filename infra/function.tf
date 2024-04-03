@@ -25,6 +25,12 @@ resource "google_cloudfunctions2_function" "function" {
     available_memory   = "256M"
     timeout_seconds    = 60
 
+    environment_variables = {
+      PROJECT_ID = var.project_id,
+      TOPIC_NAME = google_pubsub_topic.topic.name
+
+    }
+
     ingress_settings               = "ALLOW_INTERNAL_ONLY"
     all_traffic_on_latest_revision = true
     service_account_email          = google_service_account.service_account.email
